@@ -13,3 +13,9 @@ export function getBlogPage(slug) {
 		.catch(err => console.log(err))
 }
 // This API call will request an entry with the specified ID from the space defined at the top, using a space-specific access token.
+export function getBlogPages() {
+	return client
+		.getEntries({ content_type: 'blogPage' })
+		.then(resp => resp.items)
+		.catch(err => console.log(err))
+}

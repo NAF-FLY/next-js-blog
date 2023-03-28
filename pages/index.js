@@ -1,22 +1,23 @@
+import { getBlogPages } from '@/src/contentful'
 import { Typography } from '@mui/material'
-import { getBlogPage } from '@/src/contentful'
 
 import BlogCover from '@/components/BlogCover'
 
-export default function Home(props) {
+export default function Home({ blogs }) {
 	return (
 		<main>
 			<Typography variant='h1' component='h1'>
 				Hello World
 			</Typography>
-			<BlogCover {...props} />
+
+			{blogs && blogs.map((blog, i) => <BlogCover key={i} {...blog.fields} />)}
 		</main>
 	)
 }
 
 export async function getServerSideProps() {
-	const blogPage = await getBlogPage('my-first-blog-page')
+	const blogPages = await getBlogPages()
 	return {
-		props: { ...blogPage.fields },
+		props: { blogs: blogPages },
 	}
 }
