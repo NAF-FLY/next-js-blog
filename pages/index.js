@@ -1,19 +1,17 @@
 import { getBlogPages } from '@/src/contentful'
-import { Typography } from '@mui/material'
+import { Box } from '@mui/material'
 
 import BlogCover from '@/components/BlogCover'
+import { BlogGrid } from '@/components/UI/BlogGrid'
 
 export default function Home({ blogs }) {
 	return (
-		<main>
-			<Typography variant='h1' component='h1'>
-				Hello World
-			</Typography>
-			<div style={{ display: 'flex' }}>
+		<Box>
+			<BlogGrid>
 				{blogs &&
 					blogs.map((blog, i) => <BlogCover key={i} {...blog.fields} />)}
-			</div>
-		</main>
+			</BlogGrid>
+		</Box>
 	)
 }
 
