@@ -9,8 +9,10 @@ export default function Home({ blogs }) {
 			<Typography variant='h1' component='h1'>
 				Hello World
 			</Typography>
-
-			{blogs && blogs.map((blog, i) => <BlogCover key={i} {...blog.fields} />)}
+			<div style={{ display: 'flex' }}>
+				{blogs &&
+					blogs.map((blog, i) => <BlogCover key={i} {...blog.fields} />)}
+			</div>
 		</main>
 	)
 }
