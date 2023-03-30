@@ -1,46 +1,12 @@
-import Quote from '@/components/Quote'
 import { getBlogPage } from '@/src/contentful'
-import styled from '@emotion/styled'
 import { Box } from '@mui/system'
 
-import MuiMarkdown from 'mui-markdown'
+import rendererComponent from '@/src/renderer'
 
-const MarkdownImage = styled.img`
-	max-width: 100%;
-`
-
-const overrides = {
-	img: ({ alt, src }) => (
-		<Box sx={{ display: 'flex', justifyContent: 'center' }}>
-			<MarkdownImage alt={alt} src={`${src}?q=80&h=600`} />
-		</Box>
-	),
-}
-
-export default function BlogPage({ content, ...props }) {
+export default function BlogPage({ content }) {
 	return (
 		<Box sx={{ maxWidth: '1440px', width: '100%', margin: '0 auto' }}>
-			{content.map((item, key) => {
-				const contentType = item.sys.contentType.sys.id
-
-				switch (contentType) {
-					case 'paragraph':
-						return (
-							<MuiMarkdown overrides={overrides} key={key}>
-								{item.fields.text}
-							</MuiMarkdown>
-						)
-					case 'quote':
-						return <Quote key={key} {...item.fields} />
-					default:
-						return (
-							<span key={key}>
-								<br />
-								{`Unknown type ${contentType}`}
-							</span>
-						)
-				}
-			})}
+			{content.map((item, key) => rendererComponent(item, key))}
 		</Box>
 	)
 }
