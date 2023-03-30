@@ -8,14 +8,14 @@ const client = contentful.createClient({
 
 export function getBlogPage(slug) {
 	return client
-		.getEntries({ 'fields.slug': slug, content_type: 'blogPage' })
+		.getEntries({ 'fields.slug': slug, content_type: 'blogPage', include: 3 })
 		.then(resp => resp.items[0])
 		.catch(err => console.log(err))
 }
 // This API call will request an entry with the specified ID from the space defined at the top, using a space-specific access token.
 export function getBlogPages() {
 	return client
-		.getEntries({ content_type: 'blogPage' })
+		.getEntries({ content_type: 'blogPage', include: 3 })
 		.then(resp => resp.items)
 		.catch(err => console.log(err))
 }
