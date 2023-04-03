@@ -3,10 +3,23 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useState } from 'react'
 
+const basePallete = {
+	breakpoints: {
+		values: {
+			xs: 0,
+			sm: 768,
+			md: 1000,
+			lg: 1200,
+			xl: 1536,
+		},
+	},
+}
+
 const darkTheme = createTheme({
 	palette: {
 		mode: 'dark',
 	},
+	...basePallete
 })
 
 const lightTheme = createTheme()

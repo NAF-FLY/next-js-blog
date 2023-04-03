@@ -21,7 +21,11 @@ const BlogCover = ({ title, description, coverImage, slug }) => {
 						<Typography gutterBottom variant='h5' component='div'>
 							{title}
 						</Typography>
-						<Typography variant='body2' color='text.secondary'>
+						<Typography
+							variant='body2'
+							color='text.secondary'
+							sx={{ display: { sm: "block", xs: 'none' } }}
+						>
 							{description}
 						</Typography>
 					</CardContent>
