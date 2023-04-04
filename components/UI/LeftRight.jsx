@@ -10,7 +10,8 @@ const LeftRight = ({ left, right, image }) => {
 	return (
 		<Box
 			sx={{
-				display: 'grid',
+				display: { md: 'grid', xs: 'flex' },
+				flexDirection: 'column',
 				gridTemplateColumns: '1fr 1fr',
 				gap: 2,
 				marginTop: 4,
