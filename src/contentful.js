@@ -19,3 +19,10 @@ export function getBlogPages() {
 		.then(resp => resp.items)
 		.catch(err => console.log(err))
 }
+
+export function searchBlogPages(query = 'undefined undefined') {
+	return client
+		.getEntries({ content_type: 'blogPage', include: 3, query })
+		.then(resp => resp.items)
+		.catch(err => console.log(err))
+}
