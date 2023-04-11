@@ -1,22 +1,18 @@
-import BlogCover from '@/components/BlogCover'
-import { BlogGrid } from '@/components/UI/BlogGrid'
-import { getBlogPages } from '@/src/contentful'
-import { Box } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
+import Link from 'next/link'
 
-export default function Home({ blogs }) {
+export default function Home() {
 	return (
-		<Box maxWidth={'1440px'} margin='auto'>
-			<BlogGrid>
-				{blogs &&
-					blogs.map((blog, i) => <BlogCover key={i} {...blog.fields} />)}
-			</BlogGrid>
+		<Box textAlign='center'>
+			<Typography component={'h1'} variant='h1'>
+				Today you learn
+			</Typography>
+			<Typography component={'h2'} variant='h2'>
+				Enter the world of IT today
+			</Typography>
+			<Link href='/blog' passHref>
+				<Button variant='contained'>Enter Blog</Button>
+			</Link>
 		</Box>
 	)
-}
-
-export async function getServerSideProps() {
-	const blogPages = await getBlogPages()
-	return {
-		props: { blogs: blogPages },
-	}
 }
